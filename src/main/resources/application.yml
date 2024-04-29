@@ -1,14 +1,13 @@
-spring:
-  datasource:
-    url: "jdbc:mysql://localhost/spot"
-    username: "root"
-    password: "0731"
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jpa:
-    hibernate:
-      ddl-auto: update
-    properties:
-      hibernate:
-        show_sql: true
-        format_sql: true
-        dialect: org.hibernate.dialect.MySQL8Dialect
+spring.profiles.default: local
+
+---
+
+spring.config.activate.on-profile: local
+
+---
+
+spring.config.activate.on-profile: dev
+
+---
+
+spring.config.activate.on-profile: prod
