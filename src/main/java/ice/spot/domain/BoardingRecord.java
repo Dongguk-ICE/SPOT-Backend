@@ -2,11 +2,9 @@ package ice.spot.domain;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -17,9 +15,6 @@ public class BoardingRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-
-    @Column(name = "image_url")
-    private String imageUrl;
 
     @Column(name = "distance")
     private Double distance;
@@ -35,11 +30,16 @@ public class BoardingRecord {
     @JoinColumn(name = "parking_lot_id", referencedColumnName = "id")
     private ParkingLot parkingLot;
 
-    public BoardingRecord(String imageUrl, Double distance, Integer time, User user, ParkingLot parkingLot) {
-        this.imageUrl = imageUrl;
+    @OneToOne
+    @JoinColumn(name = "image_id", referencedColumnName = "id")
+    private Image image;
+
+    @Builder
+    public BoardingRecord(Double distance, Integer time, User user, ParkingLot parkingLot, Image image) {
         this.distance = distance;
         this.time = time;
         this.user = user;
         this.parkingLot = parkingLot;
+        this.image = image;
     }
 }
