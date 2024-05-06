@@ -5,7 +5,6 @@ import lombok.Builder;
 @Builder
 public record BoardingRecordRequest(
         Double distance,
-
         Integer time
 ) {
 }

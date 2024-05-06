@@ -35,8 +35,8 @@ public class ImageService {
     private final WebClient webClient;
 
     @Transactional
-    public Long saveImage(ImageSaveRequest imageSaveRequest) {
-        MultipartFile multipartFile = imageSaveRequest.getImage();
+    public Long saveImage(MultipartFile multipartFile) {
+
         String originalName = multipartFile.getOriginalFilename();
         Image image = new Image(originalName);
         String filename = image.getStoredName();
@@ -87,9 +87,6 @@ public class ImageService {
                 .retrieve()
                 .bodyToMono(ImageResponse.class);
         ImageResponse imageResponse = responseMono.block();
-
-        log.info("태그이름");
-        log.info(imageResponse.getPredictions().get(0).tagName());
 
         String hisgestProbabilityTag = imageResponse.getPredictions().get(0).tagName();
         String secondProbabilityTag = imageResponse.getPredictions().get(1).tagName();
