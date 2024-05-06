@@ -2,10 +2,9 @@ package ice.spot.domain;
 
 import jakarta.persistence.*;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -17,26 +16,11 @@ public class BoardingRecord {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "image_url")
-    private String imageUrl;
+    @Column(name = "distance")
+    private Double distance;
 
-    @Column(name = "depart_at")
-    private LocalDate departAt;
-
-    @Column(name = "arrive_at")
-    private LocalDate arriveAt;
-
-    @Column(name = "depart_lat")
-    private Double departLat;
-
-    @Column(name = "depart_lon")
-    private Double departLon;
-
-    @Column(name = "arrive_lat")
-    private Double arriveLat;
-
-    @Column(name = "arrive_lon")
-    private Double arriveLon;
+    @Column(name = "time")
+    private Integer time;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -46,15 +30,16 @@ public class BoardingRecord {
     @JoinColumn(name = "parking_lot_id", referencedColumnName = "id")
     private ParkingLot parkingLot;
 
-    public BoardingRecord(String imageUrl, LocalDate departAt, LocalDate arriveAt, Double departLat, Double departLon, Double arriveLat, Double arriveLon, User user, ParkingLot parkingLot) {
-        this.imageUrl = imageUrl;
-        this.departAt = departAt;
-        this.arriveAt = arriveAt;
-        this.departLat = departLat;
-        this.departLon = departLon;
-        this.arriveLat = arriveLat;
-        this.arriveLon = arriveLon;
+    @OneToOne
+    @JoinColumn(name = "image_id", referencedColumnName = "id")
+    private Image image;
+
+    @Builder
+    public BoardingRecord(Double distance, Integer time, User user, ParkingLot parkingLot, Image image) {
+        this.distance = distance;
+        this.time = time;
         this.user = user;
         this.parkingLot = parkingLot;
+        this.image = image;
     }
 }
