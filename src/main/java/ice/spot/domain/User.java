@@ -54,13 +54,13 @@ public class User {
     private String refreshToken;
 
     @Builder
-    public User(String serialId, String password, String nickname, ERole role, EProvider provider, Long point) {
+    public User(String serialId, String password, String nickname, ERole role, EProvider provider) {
         this.serialId = serialId;
         this.password = password;
         this.nickname = nickname;
         this.role = role;
         this.provider = provider;
-        this.point = point;
+        this.point = 0L;
         this.createdAt = LocalDate.now();
     }
 
@@ -68,6 +68,7 @@ public class User {
         this.nickname = nickname;
         this.createdAt = LocalDate.now();
         this.role = ERole.USER;
+        this.point = 0L;
     }
 
     public void updateRefreshToken(String refreshToken) {
