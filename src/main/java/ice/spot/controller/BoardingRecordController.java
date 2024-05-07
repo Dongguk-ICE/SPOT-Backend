@@ -32,4 +32,9 @@ public class BoardingRecordController {
         return ResponseDto.created(boardingRecordService
                 .saveBoardingRecord(userId, imageId, boardingRecordRequest));
     }
+
+    @GetMapping("/boarding-record")
+    public ResponseDto<?> getBoardingRecord (@UserId Long userId) {
+        return ResponseDto.ok(boardingRecordService.boardingRecordList(userId));
+    }
 }

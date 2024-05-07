@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -22,11 +24,17 @@ public class BoardingRecord {
     @Column(name = "time")
     private Integer time;
 
+    @Column(name = "point")
+    private Integer point;
+
+    @Column(name = "createdAt")
+    private LocalDateTime createdAt;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "parking_lot_id")
     private ParkingLot parkingLot;
 
@@ -35,9 +43,11 @@ public class BoardingRecord {
     private Image image;
 
     @Builder
-    public BoardingRecord(Double distance, Integer time, User user, ParkingLot parkingLot, Image image) {
+    public BoardingRecord(Double distance, Integer time, Integer point, User user, ParkingLot parkingLot, Image image) {
         this.distance = distance;
         this.time = time;
+        this.point = point;
+        this.createdAt = LocalDateTime.now();
         this.user = user;
         this.parkingLot = parkingLot;
         this.image = image;
