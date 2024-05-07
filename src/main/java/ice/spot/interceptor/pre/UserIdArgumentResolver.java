@@ -1,8 +1,8 @@
 package ice.spot.interceptor.pre;
 
 import ice.spot.annotation.UserId;
-import ice.spot.exeption.CommonException;
-import ice.spot.exeption.ErrorCode;
+import ice.spot.exception.CommonException;
+import ice.spot.exception.ErrorCode;
 import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.support.WebDataBinderFactory;

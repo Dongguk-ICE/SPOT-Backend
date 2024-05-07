@@ -1,6 +1,6 @@
 package ice.spot.security.handler.login;
 
-import ice.spot.exeption.ErrorCode;
+import ice.spot.exception.ErrorCode;
 import ice.spot.security.info.AuthenticationResponse;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

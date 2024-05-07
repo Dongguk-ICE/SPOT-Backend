@@ -27,11 +27,11 @@ public class BoardingRecord {
     private User user;
 
     @OneToOne
-    @JoinColumn(name = "parking_lot_id", referencedColumnName = "id")
+    @JoinColumn(name = "parking_lot_id")
     private ParkingLot parkingLot;
 
     @OneToOne
-    @JoinColumn(name = "image_id", referencedColumnName = "id")
+    @JoinColumn(name = "image_id")
     private Image image;
 
     @Builder

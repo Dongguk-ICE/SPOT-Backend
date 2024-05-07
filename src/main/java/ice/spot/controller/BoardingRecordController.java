@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -20,11 +22,11 @@ public class BoardingRecordController {
     private final BoardingRecordService boardingRecordService;
 
     @PostMapping("/boarding-record")
-    public ResponseDto<?> saveBoardingRecord(
+    public ResponseDto<?> saveBoardingRecord (
             @UserId Long userId,
             @RequestPart(value = "image", required = false) MultipartFile multipartFile,
             @RequestPart(value = "dto") BoardingRecordRequest boardingRecordRequest
-    ) {
+    ) throws IOException {
         Long imageId = imageService.saveImage(multipartFile);
 
         return ResponseDto.created(boardingRecordService

@@ -2,8 +2,8 @@ package ice.spot.service;
 
 import ice.spot.domain.User;
 import ice.spot.dto.request.OauthSignUpDto;
-import ice.spot.exeption.CommonException;
-import ice.spot.exeption.ErrorCode;
+import ice.spot.exception.CommonException;
+import ice.spot.exception.ErrorCode;
 import ice.spot.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

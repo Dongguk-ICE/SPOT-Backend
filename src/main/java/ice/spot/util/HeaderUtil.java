@@ -1,7 +1,7 @@
 package ice.spot.util;
 
-import ice.spot.exeption.CommonException;
-import ice.spot.exeption.ErrorCode;
+import ice.spot.exception.CommonException;
+import ice.spot.exception.ErrorCode;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.util.StringUtils;
 

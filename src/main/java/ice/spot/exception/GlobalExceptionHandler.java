@@ -1,4 +1,4 @@
-package ice.spot.exeption;
+package ice.spot.exception;
 
 import ice.spot.dto.global.ResponseDto;
 import lombok.extern.slf4j.Slf4j;
