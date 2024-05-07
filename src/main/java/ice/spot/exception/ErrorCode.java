@@ -1,4 +1,4 @@
-package ice.spot.exeption;
+package ice.spot.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

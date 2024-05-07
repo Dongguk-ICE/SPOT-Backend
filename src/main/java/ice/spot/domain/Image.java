@@ -14,6 +14,7 @@ import java.util.UUID;
 public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "origin_name")

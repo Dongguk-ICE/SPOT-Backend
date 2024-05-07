@@ -1,6 +1,6 @@
 package ice.spot.dto.global;
 
-import ice.spot.exeption.ErrorCode;
+import ice.spot.exception.ErrorCode;
 
 public record ExceptionDto(
         Integer code,

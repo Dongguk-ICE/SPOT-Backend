@@ -1,4 +1,4 @@
-package ice.spot.domain;
+package ice.spot.domain.type;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

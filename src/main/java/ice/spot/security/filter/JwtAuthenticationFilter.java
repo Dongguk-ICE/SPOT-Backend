@@ -2,8 +2,8 @@ package ice.spot.security.filter;
 
 import ice.spot.constant.Constants;
 import ice.spot.dto.type.ERole;
-import ice.spot.exeption.CommonException;
-import ice.spot.exeption.ErrorCode;
+import ice.spot.exception.CommonException;
+import ice.spot.exception.ErrorCode;
 import ice.spot.security.info.JwtUserInfo;
 import ice.spot.security.provider.JwtAuthenticationManager;
 import ice.spot.util.HeaderUtil;

@@ -1,7 +1,7 @@
 package ice.spot.dto.global;
 
-import ice.spot.exeption.CommonException;
-import ice.spot.exeption.ErrorCode;
+import ice.spot.exception.CommonException;
+import ice.spot.exception.ErrorCode;
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.NotNull;
 import net.minidev.json.annotate.JsonIgnore;

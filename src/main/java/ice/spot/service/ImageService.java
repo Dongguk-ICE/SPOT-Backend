@@ -4,12 +4,11 @@ import com.amazonaws.SdkClientException;
 import com.amazonaws.services.s3.AmazonS3Client;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import ice.spot.domain.Image;
-import ice.spot.domain.ParkingLotResult;
+import ice.spot.domain.type.ParkingLotResult;
 import ice.spot.dto.image.request.ImageCheckRequest;
 import ice.spot.dto.image.response.ImageResponse;
-import ice.spot.dto.image.request.ImageSaveRequest;
-import ice.spot.exeption.CommonException;
-import ice.spot.exeption.ErrorCode;
+import ice.spot.exception.CommonException;
+import ice.spot.exception.ErrorCode;
 import ice.spot.repository.ImageRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -35,24 +34,20 @@ public class ImageService {
     private final WebClient webClient;
 
     @Transactional
-    public Long saveImage(MultipartFile multipartFile) {
+    public Long saveImage(MultipartFile multipartFile) throws IOException {
 
         String originalName = multipartFile.getOriginalFilename();
         Image image = new Image(originalName);
         String filename = image.getStoredName();
 
-        try {
-            ObjectMetadata objectMetadata = new ObjectMetadata();
-            objectMetadata.setContentType(multipartFile.getContentType());
-            objectMetadata.setContentLength(multipartFile.getInputStream().available());
+        ObjectMetadata objectMetadata = new ObjectMetadata();
+        objectMetadata.setContentType(multipartFile.getContentType());
+        objectMetadata.setContentLength(multipartFile.getInputStream().available());
 
-            amazonS3Client.putObject(bucketName, filename, multipartFile.getInputStream(), objectMetadata);
+        amazonS3Client.putObject(bucketName, filename, multipartFile.getInputStream(), objectMetadata);
 
-            String accessUrl = amazonS3Client.getUrl(bucketName, filename).toString();
-            image.setAccessUrl(accessUrl);
-        } catch(IOException e) {
-
-        }
+        String accessUrl = amazonS3Client.getUrl(bucketName, filename).toString();
+        image.setAccessUrl(accessUrl);
 
         ParkingLotResult parkingLotResult = checkImage(new ImageCheckRequest(image.getImageUrl()));
         if(parkingLotResult == ParkingLotResult.CORRECT_PARKING_LOT) {
@@ -98,11 +93,5 @@ public class ImageService {
         } else {
             return ParkingLotResult.NOT_FOUND_KICKBOARD;
         }
-    }
-
-    @Transactional
-    public void deleteImage() {
-        Image image = imageRepository.findById(2L).orElseThrow();
-        imageRepository.delete(image);
     }
 }
