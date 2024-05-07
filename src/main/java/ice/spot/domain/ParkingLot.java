@@ -5,6 +5,9 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -27,6 +30,6 @@ public class ParkingLot {
     @Column(name = "detail_address")
     private String detailAddress;
 
-    @OneToOne(mappedBy = "parkingLot")
-    private BoardingRecord boardingRecord;
+    @OneToMany(mappedBy = "parkingLot")
+    private List<BoardingRecord> boardingRecords = new ArrayList<>();
 }

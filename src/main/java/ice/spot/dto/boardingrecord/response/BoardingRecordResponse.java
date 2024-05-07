@@ -18,12 +18,9 @@ public record BoardingRecordResponse(
         Integer time,
 
         @JsonProperty("point")
-        Integer point,
-
-        @JsonProperty("is_parking_lot")
-        Boolean isParkingLot
+        Integer point
 ) {
-    public static BoardingRecordResponse of(String createdAt, String image, Double distance, Integer time, Integer point, Boolean isParkingLot) {
-        return new BoardingRecordResponse(createdAt, image, distance, time, point, isParkingLot);
+    public static BoardingRecordResponse of(String createdAt, String image, Double distance, Integer time, Integer point) {
+        return new BoardingRecordResponse(createdAt, image, distance, time, point);
     }
 }

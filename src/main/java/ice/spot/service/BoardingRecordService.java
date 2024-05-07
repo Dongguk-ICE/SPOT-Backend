@@ -5,7 +5,9 @@ import ice.spot.domain.Image;
 import ice.spot.domain.ParkingLot;
 import ice.spot.domain.User;
 import ice.spot.dto.boardingrecord.request.BoardingRecordRequest;
+import ice.spot.dto.boardingrecord.response.BoardingRecordListResponse;
 import ice.spot.dto.boardingrecord.response.BoardingRecordResponse;
+import ice.spot.dto.user.response.PersonResponse;
 import ice.spot.exception.CommonException;
 import ice.spot.exception.ErrorCode;
 import ice.spot.repository.BoardingRecordRepository;
@@ -43,16 +45,39 @@ public class BoardingRecordService {
         boardingRecordRepository.save(BoardingRecord.builder()
                         .distance(boardingRecordRequest.distance())
                         .time(boardingRecordRequest.time())
+                        .point(100)
                         .user(user)
                         .image(image)
                         .parkingLot(parkingLot)
                 .build());
 
+        user.plusPoint();
+
         return Boolean.TRUE;
     }
 
     @Transactional(readOnly = true)
-    public List<BoardingRecordResponse> boardingRecordList(Long userId) {
-        return null;
+    public BoardingRecordListResponse boardingRecordList(Long userId) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new CommonException(ErrorCode.NOT_FOUND_USER));
+
+        BoardingRecordListResponse boardingRecordListResponse = BoardingRecordListResponse.builder()
+                .personResponse(PersonResponse.builder()
+                        .nickname(user.getNickname())
+                        .recordCount(user.getBoardingRecords().size())
+                        .point(user.getPoint())
+                        .build())
+                .boardingRecordResponseList(user.getBoardingRecords().stream()
+                        .map(boardingRecord ->
+                                BoardingRecordResponse.builder()
+                                .createdAt(boardingRecord.getCreatedAt().toString())
+                                .image(boardingRecord.getImage().getImageUrl())
+                                .distance(boardingRecord.getDistance())
+                                .time(boardingRecord.getTime())
+                                .point(boardingRecord.getPoint())
+                                .build())
+                        .toList())
+                .build();
+        return boardingRecordListResponse;
     }
 }
