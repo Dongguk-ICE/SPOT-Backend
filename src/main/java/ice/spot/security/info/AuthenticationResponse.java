@@ -3,7 +3,7 @@ package ice.spot.security.info;
 import ice.spot.constant.Constants;
 import ice.spot.dto.global.ExceptionDto;
 import ice.spot.dto.response.JwtTokenDto;
-import ice.spot.exeption.ErrorCode;
+import ice.spot.exception.ErrorCode;
 import ice.spot.util.CookieUtil;
 import jakarta.servlet.http.HttpServletResponse;
 import net.minidev.json.JSONValue;

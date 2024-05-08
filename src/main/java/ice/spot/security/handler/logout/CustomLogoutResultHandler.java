@@ -1,6 +1,6 @@
 package ice.spot.security.handler.logout;
 
-import ice.spot.exeption.ErrorCode;
+import ice.spot.exception.ErrorCode;
 import ice.spot.security.info.AuthenticationResponse;
 import ice.spot.util.CookieUtil;
 import jakarta.servlet.ServletException;

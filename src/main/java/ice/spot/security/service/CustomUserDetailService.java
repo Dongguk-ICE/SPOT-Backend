@@ -1,7 +1,7 @@
 package ice.spot.security.service;
 
-import ice.spot.exeption.CommonException;
-import ice.spot.exeption.ErrorCode;
+import ice.spot.exception.CommonException;
+import ice.spot.exception.ErrorCode;
 import ice.spot.repository.UserRepository;
 import ice.spot.security.info.UserPrincipal;
 import lombok.RequiredArgsConstructor;

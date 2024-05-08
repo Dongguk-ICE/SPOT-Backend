@@ -74,4 +74,8 @@ public class User {
     public void updateRefreshToken(String refreshToken) {
         this.refreshToken = refreshToken;
     }
+
+    public void plusPoint() {
+        this.point += 100L;
+    }
 }
