@@ -13,7 +13,6 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -73,8 +72,8 @@ public class RestTemplateService {
                 .build()
                 .toUri();
 
-        WeatherResultResponse response = restTemplate.getForObject(uri, WeatherResultResponse.class);
-        List<WeatherItemResponse> weatherItemResponses = response.realtimeWeatherResponse()
+        WeatherResultResponse weatherResultResponse = restTemplate.getForObject(uri, WeatherResultResponse.class);
+        List<WeatherItemResponse> weatherItemResponses = weatherResultResponse.realtimeWeatherResponse()
                 .weatherBody()
                 .weatherItemListResponse()
                 .weatherItemResponses();
@@ -90,7 +89,6 @@ public class RestTemplateService {
                 .temperature(Double.parseDouble(T1H))
                 .humidity(Double.parseDouble(REH))
                 .build();
-
 
         return temperatureResponse;
     }
