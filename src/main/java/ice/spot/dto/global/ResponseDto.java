@@ -13,7 +13,7 @@ public record ResponseDto<T> (
     @JsonIgnore HttpStatus httpStatus,
     boolean success,
     @Nullable T data,
-    @Nullable ExceptionDto exceptionDto
+    @Nullable ExceptionDto error
 ) {
     public static <T> ResponseDto<T> ok(T data){
         return new ResponseDto<>(
