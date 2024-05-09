@@ -9,9 +9,9 @@ public record PointResponse(
     Long point,
 
     @JsonProperty("pm10")
-    Double pm10,
+    String pm10,
 
     @JsonProperty("pm25")
-    Double pm25
+    String pm25
 ) {
 }
