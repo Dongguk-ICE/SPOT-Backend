@@ -4,8 +4,8 @@ import lombok.Builder;
 
 @Builder
 public record DustResponse(
-        Double pm10,
+        String pm10,
 
-        Double pm25
+        String pm25
 ) {
 }
