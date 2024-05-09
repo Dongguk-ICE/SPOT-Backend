@@ -56,7 +56,7 @@ public class DistrictService {
     public TemperatureResponse getTemperatureAndHumidity(double lat, double lon) {
         District district = getCloseDistrict(lat, lon);
 
-        return null;
+        return restTemplateService.getRealtimeWeather(Integer.toString(district.getGridX()), Integer.toString(district.getGridY()));
     }
 
     @Transactional

@@ -24,7 +24,7 @@ public class BoardingRecordController {
     @PostMapping("/boarding-record")
     public ResponseDto<?> saveBoardingRecord (
             @UserId Long userId,
-            @RequestPart(value = "image", required = false) MultipartFile multipartFile,
+            @RequestPart(value = "image") MultipartFile multipartFile,
             @RequestPart(value = "dto") BoardingRecordRequest boardingRecordRequest
     ) throws IOException {
         Long imageId = imageService.saveImage(multipartFile);

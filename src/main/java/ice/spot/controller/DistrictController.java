@@ -1,6 +1,8 @@
 package ice.spot.controller;
 
 import ice.spot.annotation.UserId;
+import ice.spot.domain.District;
+import ice.spot.dto.district.response.TemperatureResponse;
 import ice.spot.dto.global.ResponseDto;
 import ice.spot.service.DistrictService;
 import lombok.RequiredArgsConstructor;
@@ -23,8 +25,8 @@ public class DistrictController {
     }
 
     @GetMapping("/temperature")
-    public void getTemperatureAndHumidity(@RequestParam Double lat, @RequestParam Double lon) {
-        districtService.getTemperatureAndHumidity(lat, lon);
+    public ResponseDto<?> getTemperatureAndHumidity(@RequestParam Double lat, @RequestParam Double lon) {
+        return ResponseDto.ok(districtService.getTemperatureAndHumidity(lat, lon));
     }
 
     @GetMapping("/point")
