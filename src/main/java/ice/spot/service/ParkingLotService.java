@@ -1,6 +1,7 @@
 package ice.spot.service;
 
 import ice.spot.dto.parkingLot.response.ParkingLotResponse;
+import ice.spot.dto.parkingLot.response.ParkingLotResponseList;
 import ice.spot.repository.ParkingLotRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +20,7 @@ public class ParkingLotService {
     private final ParkingLotRepository parkingLotRepository;
 
     @Transactional(readOnly = true)
-    public List<ParkingLotResponse> parkingLotList(Double lat, Double lon) {
+    public ParkingLotResponseList parkingLotList(Double lat, Double lon) {
 
         List<ParkingLotResponse> parkingLotResponseList = new ArrayList<>(parkingLotRepository.findAll().stream()
                 .map(parkingLot -> ParkingLotResponse.builder()
@@ -41,6 +42,6 @@ public class ParkingLotService {
             }
         });
 
-        return parkingLotResponseList.subList(0, 5);
+        return ParkingLotResponseList.of(parkingLotResponseList.subList(0, 5));
     }
 }
