@@ -74,7 +74,7 @@ public class ImageService {
 
     @Transactional
     public ParkingLotResult checkImage(ImageCheckRequest imageCheckRequest) {
-        String url = "/customvision/v3.0/Prediction/a7fb39e6-90a5-43a9-bee6-366150f3a1ad/classify/iterations/detecting_illegal_parking/url";
+        String url = "/customvision/v3.0/Prediction/32861a23-8e48-4fbc-9fbf-42fe3954bd67/classify/iterations/Iteration4/url";
 
         Mono<ImageResponse> responseMono = webClient.post()
                 .uri(url)
