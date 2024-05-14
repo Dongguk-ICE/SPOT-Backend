@@ -12,10 +12,10 @@ public class WebClientConfig {
     @Bean
     public WebClient webClient(WebClient.Builder builder) {
         return builder
-                .baseUrl("https://detectingkickboard11-prediction.cognitiveservices.azure.com")
+                .baseUrl("https://kickboardparkingdetection-prediction.cognitiveservices.azure.com")
                 .defaultHeaders(httpHeaders -> {
                     httpHeaders.add(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
-                    httpHeaders.add("Prediction-Key", "17482dedf9834e0c958d0e88a3bf940d");
+                    httpHeaders.add("Prediction-Key", "8594d074b4594f7591987cba4f9f392f");
                 })
                 .build();
     }
