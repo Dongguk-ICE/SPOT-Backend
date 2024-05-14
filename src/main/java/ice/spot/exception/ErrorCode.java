@@ -34,6 +34,7 @@ public enum ErrorCode {
 
     //500
     INTERNAL_SERVER_ERROR(50000, HttpStatus.INTERNAL_SERVER_ERROR, "서버 내부 오류입니다"),
+    SERVICE_ACCESS_DENIED_ERROR(50001, HttpStatus.INTERNAL_SERVER_ERROR, "일시적으로 기상정보를 받지 못하였습니다.")
     ;
 
     private final Integer code;
