@@ -5,6 +5,8 @@ import ice.spot.dto.district.response.dust.DustResponse;
 import ice.spot.dto.district.response.dust.DustResultResponse;
 import ice.spot.dto.district.response.weather.WeatherItemResponse;
 import ice.spot.dto.district.response.weather.WeatherResultResponse;
+import ice.spot.exception.CommonException;
+import ice.spot.exception.ErrorCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.HttpEntity;
@@ -91,10 +93,11 @@ public class RestTemplateService {
         String HH = parsedLocalDateTime.format(DateTimeFormatter.ofPattern("HH")) + "00";
 
         try {
+            final String secretKey = "zNmiod%2F0aq5%2F06rrd8wHCmHhake9Vvj%2BY%2BX%2BsnrK7AU9uvTvg2qtAfZrjm9Gu1navvJG3%2B9sSN6MfriPi0rlLA%3D%3D";
             URI uri = UriComponentsBuilder
                     .fromUriString("http://apis.data.go.kr")
                     .path("/1360000/VilageFcstInfoService_2.0/getUltraSrtNcst")
-                    .queryParam("ServiceKey", "zNmiod/0aq5/06rrd8wHCmHhake9Vvj+Y+X+snrK7AU9uvTvg2qtAfZrjm9Gu1navvJG3+9sSN6MfriPi0rlLA==")
+                    .queryParam("ServiceKey", secretKey)
                     .queryParam("pageNo", "1")
                     .queryParam("numOfRows", "10")
                     .queryParam("dataType", "JSON")
@@ -103,7 +106,7 @@ public class RestTemplateService {
                     .queryParam("nx", nx)
                     .queryParam("ny", ny)
                     .encode()
-                    .build()
+                    .build(true)
                     .toUri();
             WeatherResultResponse weatherResultResponse = restTemplate.exchange(uri, HttpMethod.GET, entity, WeatherResultResponse.class).getBody();
 
@@ -126,10 +129,7 @@ public class RestTemplateService {
 
             return temperatureResponse;
         } catch (Exception e) {
-            return TemperatureResponse.builder()
-                    .temperature(14.0)
-                    .humidity(79.0)
-                    .build();
+            throw new CommonException(ErrorCode.SERVICE_ACCESS_DENIED_ERROR);
         }
     }
 }
